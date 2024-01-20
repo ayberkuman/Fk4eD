@@ -14,26 +14,15 @@ import { Input } from "../ui/input";
 import TipTap from "./tip-tap";
 
 export const formSchema = z.object({
-  title: z
-    .string()
-    .min(1, {
-      message: "Please enter a title",
-    })
-    .max(100, {
-      message: "Title must be less than 100 characters",
-    }),
-  description: z.string().max(1000, {
-    message: "Description must be less than 1000 characters",
-  }),
+  textEditorForm: z.string(),
 });
 
 export default function TextEditor() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    mode: "onChange",
+
     defaultValues: {
-      title: "",
-      description: "",
+      textEditorForm: "Hello World!",
     },
   });
 
@@ -42,28 +31,15 @@ export default function TextEditor() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-screen-2xl mx-auto p-6 bg-white space-y-6">
+      <h1 className="text-[#4B465C] font-semibold text-[22px]">Text Editor</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
             control={form.control}
-            name="title"
+            name="textEditorForm"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
-                <FormControl>
-                  <Input placeholder="shadcn" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Description</FormLabel>
                 <FormControl>
                   <TipTap
                     description={field.value}

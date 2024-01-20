@@ -21,7 +21,7 @@ export default function Toolbar({ editor }: ToolbarProps) {
     return null;
   }
   return (
-    <div className="flex items-center gap-[10px] p-3 border-[1px] border-[#DBDADE] rounded-md rounded-b-lg -my-1 text-[#4B465C] *:border-[#DBDADE] *:border-[1px] *:py-[6px] *:px-[10px]">
+    <div className="flex flex-wrap items-center gap-[10px] p-3 border-[1px] border-[#DBDADE] rounded-md rounded-b-lg -my-1 text-[#4B465C] *:border-[#DBDADE] *:border-[1px] *:py-[6px] *:px-[10px]">
       <Toggle
         pressed={editor.isActive("bold")}
         onPressedChange={() => editor.chain().focus().toggleBold().run()}
