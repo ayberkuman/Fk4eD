@@ -11,7 +11,7 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import TipTap from "../ui/tip-tap";
+import TipTap from "./tip-tap";
 
 export const formSchema = z.object({
   title: z

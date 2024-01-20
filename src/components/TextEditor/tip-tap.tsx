@@ -3,6 +3,10 @@ import StarterKit from "@tiptap/starter-kit";
 import Toolbar from "./toolbar";
 import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
+import ListItem from "@tiptap/extension-list-item";
+import BulletList from "@tiptap/extension-bullet-list";
+import OrderedList from "@tiptap/extension-ordered-list";
+import { TextStyleExtended } from "./extensions/font-size-extension";
 export default function TipTap({
   description,
   onChange,
@@ -17,13 +21,18 @@ export default function TipTap({
       TextAlign.configure({
         types: ["heading", "paragraph"],
         alignments: ["left", "center", "right", "justify"],
+        defaultAlignment: "left",
       }),
+      ListItem,
+      BulletList,
+      OrderedList,
+      TextStyleExtended,
     ],
     content: description,
     editorProps: {
       attributes: {
         class:
-          " border-[1px] border-[#DBDADE] rounded-md p-2 min-h-[250px] focus:outline-none",
+          "border-x-[1px] border-x-[#DBDADE] border-b-[1px] border-b-[#DBDADE] rounded-md p-2 min-h-[250px] focus:outline-none",
       },
     },
     onUpdate: ({ editor }) => {

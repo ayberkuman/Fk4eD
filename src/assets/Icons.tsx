@@ -114,7 +114,7 @@ export const Icons = {
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={1.5}
-        d="M9 6h11M9 12h11M9 18h11M5 6v.01M5 12v.01M5 18v.01"
+        d="M11 6h9m-9 6h9m-8 6h8M4 16a2 2 0 0 1 4 0c0 .591-.5 1-1 1.5L4 20h4M6 10V4L4 6"
       />
       <path
         stroke="#fff"
@@ -122,7 +122,7 @@ export const Icons = {
         strokeLinejoin="round"
         strokeOpacity={0.2}
         strokeWidth={1.5}
-        d="M9 6h11M9 12h11M9 18h11M5 6v.01M5 12v.01M5 18v.01"
+        d="M11 6h9m-9 6h9m-8 6h8M4 16a2 2 0 0 1 4 0c0 .591-.5 1-1 1.5L4 20h4M6 10V4L4 6"
       />
     </svg>
   ),
