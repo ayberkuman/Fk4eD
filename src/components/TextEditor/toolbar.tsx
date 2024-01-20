@@ -10,13 +10,16 @@ import {
 } from "../ui/dropdown-menu";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { TextEditorProps } from ".";
 
 const FONT_SIZES = ["14", "16", "18", "20", "24", "28"];
 
 interface ToolbarProps {
   editor: Editor | null;
+  toolbarAlignment: TextEditorProps["toolbarAlignment"];
 }
-export default function Toolbar({ editor }: ToolbarProps) {
+export default function Toolbar({ editor, toolbarAlignment }: ToolbarProps) {
   const [fontSize, setFontSize] = useState("14");
   if (!editor) {
     return (
@@ -27,7 +30,16 @@ export default function Toolbar({ editor }: ToolbarProps) {
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-[10px] p-3 border-[1px] border-[#DBDADE] rounded-md rounded-b-lg -my-1 text-[#4B465C] *:border-[#DBDADE] *:border-[1px] *:py-[6px] *:px-[10px]">
+    <div
+      className={cn(
+        "flex flex-wrap items-center gap-[10px] p-3 border-[1px] border-[#DBDADE] rounded-md rounded-b-lg -my-1 text-[#4B465C] *:border-[#DBDADE] *:border-[1px] *:py-[6px] *:px-[10px]",
+        {
+          "justify-start": toolbarAlignment === "left",
+          "justify-center": toolbarAlignment === "center",
+          "justify-end": toolbarAlignment === "right",
+        }
+      )}
+    >
       <Toggle
         pressed={editor.isActive("bold")}
         onPressedChange={() => editor.chain().focus().toggleBold().run()}

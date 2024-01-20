@@ -12,33 +12,54 @@ import {
 import TipTap from "./tip-tap";
 import { Button } from "../ui/button";
 import { useToast } from "../ui/use-toast";
+import { cn } from "@/lib/utils";
 
 export const formSchema = z.object({
-  textEditorForm: z.any(),
+  textEditorForm: z.string(),
 });
 
-export default function TextEditor() {
+export interface TextEditorProps {
+  title: string;
+  withTitle: boolean;
+  buttonText: string;
+  buttonAlignment: "left" | "center" | "right";
+  toolbarAlignment: "left" | "center" | "right";
+}
+
+export default function TextEditor({
+  title,
+  withTitle,
+  buttonText,
+  buttonAlignment,
+  toolbarAlignment,
+}: TextEditorProps) {
   const { toast } = useToast();
-  
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
 
     defaultValues: {
-      textEditorForm:""
+      textEditorForm: "",
     },
   });
 
   function onSubmit(input: z.infer<typeof formSchema>) {
     return toast({
-      title: "You Submitted",
-      description: <code className="bg-slate-900">{JSON.stringify(input.textEditorForm, null, 2)}</code>,
+      title: "Your HTML",
+      description: (
+        <code className="bg-slate-900">
+          {JSON.stringify(input.textEditorForm, null, 2)}
+        </code>
+      ),
       variant: "default",
     });
   }
 
   return (
-    <div className="max-w-screen-2xl mx-auto p-6 bg-white space-y-6">
-      <h1 className="text-[#4B465C] font-semibold text-[22px]">Text Editor</h1>
+    <div className="max-w-screen-2xl mx-auto p-6 bg-white space-y-6 transition-all">
+      {withTitle && (
+        <h1 className="text-[#4B465C] font-semibold text-[22px]">{title}</h1>
+      )}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -48,6 +69,7 @@ export default function TextEditor() {
               <FormItem>
                 <FormControl>
                   <TipTap
+                  toolbarAlignment={toolbarAlignment}
                     description={field.value}
                     onChange={(desc) => field.onChange(desc)}
                   />
@@ -56,13 +78,18 @@ export default function TextEditor() {
               </FormItem>
             )}
           />
-          <div className="ml-auto w-min">
+          <div
+            className={cn("w-min", {
+              "ml-auto": buttonAlignment === "right",
+              "mx-auto": buttonAlignment === "center",
+            })}
+          >
             <Button
               className="bg-[#7367F0] hover:bg-[#7367F0]/80 px-5 rounded-lg"
               type="submit"
               size="default"
             >
-              Send
+              {buttonText}
             </Button>
           </div>
         </form>

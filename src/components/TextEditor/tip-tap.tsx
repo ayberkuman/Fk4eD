@@ -7,12 +7,15 @@ import ListItem from "@tiptap/extension-list-item";
 import BulletList from "@tiptap/extension-bullet-list";
 import OrderedList from "@tiptap/extension-ordered-list";
 import { TextStyleExtended } from "./extensions/font-size-extension";
+import { TextEditorProps } from ".";
 export default function TipTap({
   description,
   onChange,
+  toolbarAlignment,
 }: {
   description: string;
   onChange: (desc: string) => void;
+  toolbarAlignment: TextEditorProps["toolbarAlignment"];
 }) {
   const editor = useEditor({
     extensions: [
@@ -41,7 +44,7 @@ export default function TipTap({
   });
   return (
     <div className="flex flex-col justify-stretch min-h-[250px]">
-      <Toolbar editor={editor} />
+      <Toolbar editor={editor} toolbarAlignment={toolbarAlignment} />
       <EditorContent editor={editor} />
     </div>
   );
