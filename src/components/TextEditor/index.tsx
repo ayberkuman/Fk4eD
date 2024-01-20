@@ -7,27 +7,33 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "../ui/form";
-import { Input } from "../ui/input";
 import TipTap from "./tip-tap";
+import { Button } from "../ui/button";
+import { useToast } from "../ui/use-toast";
 
 export const formSchema = z.object({
-  textEditorForm: z.string(),
+  textEditorForm: z.any(),
 });
 
 export default function TextEditor() {
+  const { toast } = useToast();
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
 
     defaultValues: {
-      textEditorForm: "Hello World!",
+      textEditorForm:""
     },
   });
 
   function onSubmit(input: z.infer<typeof formSchema>) {
-    console.log(input);
+    return toast({
+      title: "You Submitted",
+      description: <code className="bg-slate-900">{JSON.stringify(input.textEditorForm, null, 2)}</code>,
+      variant: "default",
+    });
   }
 
   return (
@@ -50,6 +56,15 @@ export default function TextEditor() {
               </FormItem>
             )}
           />
+          <div className="ml-auto w-min">
+            <Button
+              className="bg-[#7367F0] hover:bg-[#7367F0]/80 px-5 rounded-lg"
+              type="submit"
+              size="default"
+            >
+              Send
+            </Button>
+          </div>
         </form>
       </Form>
     </div>

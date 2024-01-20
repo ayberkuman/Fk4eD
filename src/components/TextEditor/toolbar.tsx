@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 const FONT_SIZES = ["14", "16", "18", "20", "24", "28"];
 
@@ -18,8 +19,13 @@ interface ToolbarProps {
 export default function Toolbar({ editor }: ToolbarProps) {
   const [fontSize, setFontSize] = useState("14");
   if (!editor) {
-    return null;
+    return (
+      <div className="min-h-[250px] grid place-items-center">
+        <Loader2 className="animate-spin" size={32} />
+      </div>
+    );
   }
+
   return (
     <div className="flex flex-wrap items-center gap-[10px] p-3 border-[1px] border-[#DBDADE] rounded-md rounded-b-lg -my-1 text-[#4B465C] *:border-[#DBDADE] *:border-[1px] *:py-[6px] *:px-[10px]">
       <Toggle
@@ -87,8 +93,8 @@ export default function Toolbar({ editor }: ToolbarProps) {
         <Icons.listNumbered />
       </Toggle>
       <DropdownMenu>
-        <DropdownMenuTrigger className="flex text-[#4B465C] text-[15px] p-0 max-h-9">
-          <div>{fontSize}</div>
+        <DropdownMenuTrigger className="flex text-[#4B465C] text-[15px] p-0 max-h-9 hover:bg-muted transition-colors">
+          <div>{fontSize} pt</div>
           <Icons.arrows />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
