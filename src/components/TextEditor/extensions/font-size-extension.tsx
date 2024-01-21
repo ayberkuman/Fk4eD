@@ -10,6 +10,7 @@ declare module "@tiptap/core" {
   }
 }
 
+//this is the custom extension for font size because tiptap doesn't have one
 export const TextStyleExtended = TextStyle.extend({
   addAttributes() {
     return {

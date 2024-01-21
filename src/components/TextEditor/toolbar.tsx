@@ -19,8 +19,12 @@ interface ToolbarProps {
   editor: Editor | null;
   toolbarAlignment: TextEditorProps["toolbarAlignment"];
 }
+
 export default function Toolbar({ editor, toolbarAlignment }: ToolbarProps) {
-  const [fontSize, setFontSize] = useState("14");
+  const [fontSize, setFontSize] = useState("14");//Because tiptap doesn't have an extension for font size, 
+  //i've made a custom extension for it in src/components/TextEditor/extensions/font-size-extension.tsx
+  //this state is to show the current font size in the UI might not be the best solution.
+
   if (!editor) {
     return (
       <div className="min-h-[250px] grid place-items-center">

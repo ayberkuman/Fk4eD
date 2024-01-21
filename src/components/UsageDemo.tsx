@@ -13,6 +13,9 @@ import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 
+//this component is just for demo purposes so i did not try to separate it into smaller components
+//but in a real world scenario i would separate it into smaller components and 
+//use mapping to not repeat myself
 export default function UsageDemo({
   textEditorProps,
   setTextEditorProps,

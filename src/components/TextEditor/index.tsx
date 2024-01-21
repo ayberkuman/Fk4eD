@@ -18,6 +18,8 @@ export const formSchema = z.object({
   textEditorForm: z.string(),
 });
 
+//I normally extract the types into a separate file but for the sake of simplicity i've put them here
+//because there is only one type that is exported
 export interface TextEditorProps {
   title: string;
   withTitle: boolean;
