@@ -93,7 +93,8 @@ export default function Toolbar({ editor, toolbarAlignment }: ToolbarProps) {
       <Toggle
         pressed={editor.isActive("bulletList")}
         onPressedChange={() => {
-          () => editor.chain().focus().toggleBulletList().run();
+          console.log("press");
+          editor.chain().focus().toggleBulletList().run();
         }}
       >
         <Icons.list />

@@ -35,7 +35,7 @@ export default function TipTap({
     editorProps: {
       attributes: {
         class:
-          "border-x-[1px] border-x-[#DBDADE] border-b-[1px] border-b-[#DBDADE] rounded-md p-5 min-h-[250px] focus:outline-none text-[15px] text-[#4B465C]",
+          "border-x-[1px] prose max-w-none border-x-[#DBDADE] border-b-[1px] border-b-[#DBDADE] rounded-md p-5 min-h-[250px] focus:outline-none text-[15px] text-[#4B465C]",
       },
     },
     onUpdate: ({ editor }) => {
