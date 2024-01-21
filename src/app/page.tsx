@@ -14,7 +14,13 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-200 p-12 ">
-      <TextEditor {...textEditorProps} />
+      <TextEditor
+        title={textEditorProps.title}
+        withTitle={textEditorProps.withTitle}
+        buttonText={textEditorProps.buttonText}
+        buttonAlignment={textEditorProps.buttonAlignment}
+        toolbarAlignment={textEditorProps.toolbarAlignment}
+      />
       <UsageDemo
         textEditorProps={textEditorProps}
         setTextEditorProps={setTextEditorProps}
